@@ -457,12 +457,238 @@
   .kpi-card:nth-child(5) { animation-delay: 0.25s; }
   .kpi-card:nth-child(6) { animation-delay: 0.3s; }
 
+  /* ===== Tabs (KPI / FAQ 切換) ===== */
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    padding: 12px 22px 14px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-mute);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+  }
+  .tab .tab-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    opacity: 0.7;
+  }
+  .tab:hover { color: var(--ink); }
+  .tab.active {
+    color: var(--ink);
+    border-bottom-color: var(--accent-warm);
+    font-weight: 600;
+  }
+
+  /* ===== View 切換 ===== */
+  .view { display: none; }
+  .view.active { display: block; animation: fadeUp 0.4s ease backwards; }
+
+  /* ===== FAQ ===== */
+  .faq-intro {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 22px 26px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px 36px;
+    align-items: center;
+  }
+  .faq-intro .lead {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.45;
+    flex: 1;
+    min-width: 240px;
+  }
+  .faq-intro .lead em { font-style: italic; color: #e6a868; }
+  .faq-intro .price {
+    text-align: center;
+    border-left: 1px solid rgba(255,255,255,0.2);
+    padding-left: 30px;
+  }
+  .faq-intro .price .big {
+    font-family: 'Fraunces', serif;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1;
+    color: #e6a868;
+  }
+  .faq-intro .price .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--bg-soft);
+    opacity: 0.85;
+    margin-top: 7px;
+  }
+
+  /* 速答表 */
+  .quick-table {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    margin-bottom: 36px;
+    overflow-x: auto;
+  }
+  .quick-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .quick-table thead th {
+    background: var(--bg-soft);
+    color: var(--ink);
+    text-transform: none;
+    font-family: 'Noto Sans TC', sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .quick-table tbody td { padding: 13px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .quick-table tbody tr:last-child td { border-bottom: none; }
+  .quick-table .q-col { font-weight: 600; color: var(--accent); white-space: nowrap; }
+
+  /* 手風琴 FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    transition: border-color 0.2s;
+  }
+  .faq-item.open { border-color: var(--accent); }
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    padding: 18px 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--ink);
+  }
+  .faq-q .q-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-warm);
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .faq-q .q-text { flex: 1; font-size: 16px; font-weight: 600; line-height: 1.5; }
+  .faq-q .q-chevron {
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-mute);
+    transition: transform 0.25s;
+    font-size: 16px;
+    padding-top: 1px;
+  }
+  .faq-item.open .q-chevron { transform: rotate(45deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .faq-a-inner {
+    padding: 0 22px 22px 50px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.7;
+  }
+  .faq-a-inner p { margin-bottom: 10px; }
+  .faq-a-inner strong { color: var(--ink); font-weight: 600; }
+  .faq-a-inner ul { list-style: none; margin: 8px 0 12px; padding: 0; }
+  .faq-a-inner li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 7px;
+  }
+  .faq-a-inner li::before {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 10px;
+    width: 5px;
+    height: 5px;
+    background: var(--accent-warm);
+  }
+  .faq-a-inner li ul { margin: 6px 0 6px; }
+  .faq-a-inner li ul li::before { background: var(--ink-mute); width: 4px; height: 4px; top: 11px; }
+
+  .sub-block {
+    background: var(--bg-soft);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    margin: 10px 0;
+  }
+  .sub-block .sub-head {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 13.5px;
+    margin-bottom: 4px;
+  }
+  .note-warn {
+    background: var(--unpaid-bg);
+    border-left: 3px solid var(--unpaid);
+    padding: 12px 16px;
+    margin: 12px 0 4px;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+  .note-warn strong { color: var(--unpaid); }
+
+  .faq-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--ink);
+    color: var(--bg);
+    text-decoration: none;
+    padding: 9px 16px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 6px 8px 6px 0;
+    transition: background 0.2s;
+  }
+  .faq-btn:hover { background: var(--accent); }
+  .faq-btn.warm { background: var(--accent-warm); }
+  .faq-btn.warm:hover { background: #a85f15; }
+  .faq-btn::before { content: '\2192'; font-family: 'JetBrains Mono', monospace; }
+
+  .faq-foot {
+    margin-top: 30px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-mute);
+    letter-spacing: 0.05em;
+    text-align: right;
+  }
+
   /* ===== Mobile ===== */
   @media (max-width: 700px) {
     .wrap { padding: 20px 16px 60px; }
     .title-block h1 { font-size: 26px; }
     header { align-items: flex-start; }
     .meta { text-align: left; }
+    .tab { padding: 10px 13px 12px; font-size: 14px; }
+    .faq-intro .price { border-left: none; padding-left: 0; text-align: left; }
+    .faq-a-inner { padding-left: 22px; }
+    .quick-table { font-size: 13px; }
     .filter-bar { gap: 14px; padding: 14px; }
     .filter-group { width: 100%; flex-direction: column; align-items: flex-start; }
     .search-box { width: 100%; }
@@ -486,8 +712,235 @@
     </div>
   </header>
 
-  <div id="content">
-    <div class="state" id="loadingState">資料載入中...</div>
+  <nav class="tabs" id="tabNav">
+    <button class="tab active" data-view="kpi"><span class="tab-num">01</span>KPI 績效看板</button>
+    <button class="tab" data-view="faq"><span class="tab-num">02</span>辦事處 FAQ</button>
+  </nav>
+
+  <!-- ===== View 1：KPI 看板（動態載入）===== -->
+  <div id="view-kpi" class="view active">
+    <div id="content">
+      <div class="state" id="loadingState">資料載入中...</div>
+    </div>
+  </div>
+
+  <!-- ===== View 2：辦事處 FAQ（靜態）===== -->
+  <div id="view-faq" class="view">
+
+    <div class="faq-intro">
+      <div class="lead">企業進出口數據看板 — 辦事處推廣與客服速查手冊。<br><em>同仁不必是數據專家，只需當「專業引路人」。</em></div>
+      <div class="price">
+        <div class="big">$999</div>
+        <div class="sub">／ 年 · 一天不到 3 元</div>
+      </div>
+    </div>
+
+    <!-- 速答表 -->
+    <div class="section-label">
+      <span class="num">A</span>
+      <h2>客戶常見問題 · 一句話速答</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="quick-table">
+      <table>
+        <thead>
+          <tr><th class="q-col">客戶問</th><th>同仁這樣回</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="q-col">這能幫我什麼？</td><td>用官方數據判斷市場、找下一個成長市場，不靠經驗猜。</td></tr>
+          <tr><td class="q-col">我已有市場了</td><td>降低單一市場依賴、提早布局潛力市場、報價有數據撐腰。</td></tr>
+          <tr><td class="q-col">我不懂數據</td><td>只要給 HS Code＋產品名，視覺化看板像看天氣預報一樣簡單。</td></tr>
+          <tr><td class="q-col">代工廠適合嗎？</td><td>想做自有品牌／開發新買主就適合；純 OEM 受客戶指定者效益較有限。</td></tr>
+          <tr><td class="q-col">用 ChatGPT 就好？</td><td>AI 會「幻覺」編造數字；這是關務署官方報關統計，能拿去佐證。</td></tr>
+          <tr><td class="q-col">多少錢？</td><td>一年 999 元，平均一天不到 3 元，含每月更新、全年無限次查閱。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 客戶完整 FAQ -->
+    <div class="section-label">
+      <span class="num">B</span>
+      <h2>客戶完整 FAQ（點開看詳答）</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="faq-list" id="faqCustomer">
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">Q1</span><span class="q-text">這套看板可以幫我做什麼？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>用數據判斷市場、規劃拓銷方向，不必只靠經驗猜。透過看板可快速掌握：</p>
+          <ul>
+            <li>哪些國家正在增加進口需求</li>
+            <li>台灣出口到各國的價格趨勢</li>
+            <li>主要市場的供需變化</li>
+            <li>哪些市場值得優先開發</li>
+          </ul>
+          <p>對中小企業來說，是一套<strong>低成本、快速掌握海外市場情報</strong>的工具。</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">Q2</span><span class="q-text">我已有固定外銷市場，為什麼還需要它？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>既有市場穩定，不代表沒有風險。看板可協助您：</p>
+          <ul>
+            <li>發現新興市場，降低過度依賴單一市場的風險</li>
+            <li>掌握各國需求變化，提早布局潛力市場</li>
+            <li>用實際數據作為報價與議價依據，提升談判信心</li>
+          </ul>
+          <p>簡單說，它能幫您看見<strong>「下一個可能成長的市場」</strong>。</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">Q3</span><span class="q-text">使用這套看板需要數據分析背景嗎？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>不需要。您只要提供產品的 <strong>HS Code（進出口貨品分類號列）</strong>與產品名稱，我們就能協助建置企業專屬看板。</p>
+          <p>看板採視覺化呈現，可直接查閱市場分布、價格趨勢與供需變化。業務、市場開發、產品規劃或經營決策人員，都能快速上手。</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">Q4</span><span class="q-text">這套看板適合哪些企業？代工廠也適用嗎？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>特別適合想<strong>主動拓展海外市場</strong>的企業，適合對象包括：</p>
+          <ul>
+            <li>擁有自有產品或自有品牌的企業</li>
+            <li>正在尋找新市場、新買主的製造商或貿易商</li>
+            <li>需要制定海外報價策略的業者</li>
+            <li>想評估產品在不同國家需求與價格變化的企業</li>
+          </ul>
+          <p>若是純代工（OEM）且訂單完全由既有客戶指定，使用效益可能較有限；但若有意發展自有品牌、開發新買主或拓展海外市場，仍可作為市場評估的起點。</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">Q5</span><span class="q-text">為什麼不能直接用 ChatGPT 生成市場報告就好？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>AI 可以協助整理文字，但商業決策需要正確、可驗證的數據。一般 AI 工具可能產生<strong>「幻覺（Hallucination）」</strong>，生成看似合理、但實際不存在或無法查證的數字；若用在報價、市場開發或投資判斷，可能造成錯誤決策。</p>
+          <p>企業進出口數據看板採用<strong>財政部關務署</strong>發布的進出口報關統計，呈現的是官方數據，可作為市場分析、內部提案與客戶溝通的依據。</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">Q6</span><span class="q-text">資料多久更新一次？可以查到多久以前的歷史數據？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>看板資料<strong>每月定期更新</strong>，資料基礎為財政部關務署公告的進出口報關統計。您可查閱過去 <strong>5 年</strong>的歷史資料，用於：</p>
+          <ul>
+            <li>年度比較</li>
+            <li>季節性分析</li>
+            <li>長期趨勢觀察</li>
+            <li>判斷市場是成長、衰退或短期波動</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">Q7</span><span class="q-text">NT$999 的訂閱年費包含哪些服務？有沒有額外費用？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>NT$999 為一整年的訂閱費用，包含：</p>
+          <ul>
+            <li>企業專屬數據看板，依您提供的 HS Code 客製</li>
+            <li>全年線上無限次數查閱</li>
+            <li>每月資料自動更新</li>
+            <li>貿協數據產品優先試用體驗機會</li>
+          </ul>
+          <p><strong>無其他隱藏費用</strong>，讓企業以低成本取得實用的市場情報。</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">Q8</span><span class="q-text">要怎麼訂閱？有名額限制嗎？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>本服務限時限量，限量 <strong>300 家企業</strong>，額滿為止。報名流程：</p>
+          <ul>
+            <li>前往註冊頁面完成註冊</li>
+            <li>完成註冊並繳費</li>
+            <li>專人聯繫，確認 HS Code 與產品資訊</li>
+            <li>完成確認後，建置企業專屬看板</li>
+          </ul>
+          <a class="faq-btn warm" href="https://events.taiwantrade.com/115dashboard/Enrollment/Login" target="_blank" rel="noopener">前往註冊頁面</a>
+        </div></div>
+      </div>
+
+    </div>
+
+    <!-- 辦事處操作指引 -->
+    <div class="section-label" style="margin-top:40px;">
+      <span class="num">C</span>
+      <h2>辦事處推廣與績效指引</h2>
+      <span class="rule"></span>
+    </div>
+    <div class="faq-list" id="faqOffice">
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">C1</span><span class="q-text">這套工具能解決什麼痛點？價值在哪？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p><strong>核心價值：</strong>一套針對出口業者設計的「數據導航儀」。許多廠商雖有外銷經驗，但常依賴慣性，容易產生數據盲點。</p>
+          <div class="sub-block">
+            <div class="sub-head">實戰案例 · 發現藍海</div>
+            協助高雄原料廠商確認泰國市場成長性，避開價格戰，鎖定競爭較低的利基點優化定價。
+          </div>
+          <div class="sub-block">
+            <div class="sub-head">實戰案例 · 開拓新局</div>
+            協助嘉義米廠從飽和的日本市場，轉而發掘馬來西亞新商機，並成功對接清真認證資源。
+          </div>
+          <div class="note-warn"><strong>重要叮嚀：</strong>本工具重點在「決策分析」與「市場洞察」。若廠商目標僅是「索取買主名單」，請務必先行說明，以避免預期落差。</div>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">C2</span><span class="q-text">廠商有興趣，但我對功能操作不熟怎麼辦？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p><strong>推廣策略：</strong>同仁無需成為數據專家，只需扮演「專業引路人」。</p>
+          <ul>
+            <li><strong>初步遞送：</strong>分享「產品介紹 PDF」或「3 分鐘示範影片」。</li>
+            <li><strong>最強後援：</strong>直接提供「1 對 1 遠端專家導覽」預約連結，台北數據團隊親自上線、針對廠商 HS Code 實機示範，大幅提升成交率。</li>
+          </ul>
+          <a class="faq-btn" href="https://taitraebs-my.sharepoint.com/my?id=%2Fpersonal%2Fcachan%5Ftaitra%5Forg%5Ftw%2FDocuments%2F%E5%84%80%E9%8C%B6%E6%9D%BF%E6%95%99%E5%AD%B8%E5%BD%B1%E7%89%87&ct=1774506247407&or=Teams%2DHL&ga=1&LOF=1" target="_blank" rel="noopener">3 分鐘示範影片</a>
+          <a class="faq-btn warm" href="https://outlook.office.com/book/Bookings1281896@taitra.org.tw/s/febq8y7efE6XtJ_O0W17kA2?ismsaljsauthenabled" target="_blank" rel="noopener">1 對 1 導覽預約</a>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">C3</span><span class="q-text">辦事處如何認列推廣績效？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <ul>
+            <li><strong>關鍵步驟：</strong>請務必提醒廠商在填寫「活動匯」報名表單時，於<strong>「推薦辦事處／單位」</strong>欄位勾選貴單位名稱，績效將自動歸屬。</li>
+            <li><strong>補救機制：</strong>若廠商遺漏填寫，請電郵或私訊<strong>陳怡伶專員</strong>進行人工註記。</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">C4</span><span class="q-text">大公司不符合申請資格怎麼辦？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <p>提供兩種處理路徑，請廠商務必衡酌相關執行風險：</p>
+          <div class="sub-block">
+            <div class="sub-head">路徑一 · 運用關係企業申請</div>
+            建議改以符合中小企業規格的「子公司」或「關聯企業」名義報名。該企業須具<strong>獨立法人資格</strong>（如母公司旗下的獨立子公司），而非僅是「分公司」或「地方辦事處」（例：不可用「XX 公司高雄分公司」名義）。
+          </div>
+          <div class="sub-block">
+            <div class="sub-head">路徑二 · 借用外部廠商名義</div>
+            由具申請資格的外部合作廠商（經銷商、代理商、上下游供應鏈夥伴）代為提出申請，再將取得資源轉化為商務談判或客戶維繫的工具。
+          </div>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q"><span class="q-tag">C5</span><span class="q-text">看板與 iTrend 的推廣績效如何計算？</span><span class="q-chevron">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">
+          <ul>
+            <li><strong>績效連動（買 1 送 1）：</strong>凡廠商報名「企業進出口數據看板」，該筆紀錄將直接同步採計為 <strong>iTrend 推廣績效</strong>。</li>
+            <li><strong>未繳費名單追蹤：</strong>已報名但尚未繳費者，相關資訊將定期彙整，轉交 <strong>iTrend 專責小組（數位科技中心數據分析組）</strong>接手後續追蹤，協助辦事處將潛在需求轉化為實質績效。</li>
+          </ul>
+        </div></div>
+      </div>
+
+    </div>
+
+    <div class="faq-foot">資料來源：財政部關務署進出口報關統計 · 內容僅供辦事處內部推廣參考</div>
+
   </div>
 
 </div>
@@ -767,7 +1220,44 @@
   }
   function escapeAttr(s) { return escapeHtml(s); }
 
+  // ---------- 分頁切換 ----------
+  function setupTabs() {
+    const tabs = document.querySelectorAll('.tab');
+    const views = { kpi: $('view-kpi'), faq: $('view-faq') };
+    const meta = document.querySelector('.meta');
+    tabs.forEach(tab => {
+      tab.onclick = () => {
+        const v = tab.dataset.view;
+        tabs.forEach(t => t.classList.toggle('active', t === tab));
+        Object.keys(views).forEach(k => views[k].classList.toggle('active', k === v));
+        // FAQ 分頁時隱藏「重新同步」控制（與看板無關）
+        if (meta) meta.style.visibility = (v === 'kpi') ? 'visible' : 'hidden';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+    });
+  }
+
+  // ---------- FAQ 手風琴 ----------
+  function setupFaq() {
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      q.onclick = () => {
+        const isOpen = item.classList.contains('open');
+        if (isOpen) {
+          item.classList.remove('open');
+          a.style.maxHeight = null;
+        } else {
+          item.classList.add('open');
+          a.style.maxHeight = a.scrollHeight + 'px';
+        }
+      };
+    });
+  }
+
   // ---------- 初始化 ----------
+  setupTabs();
+  setupFaq();
   $('refreshBtn').onclick = loadData;
   loadData();
 
