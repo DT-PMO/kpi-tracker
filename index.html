@@ -529,13 +529,18 @@
     line-height: 1;
     color: #e6a868;
   }
+  .faq-intro .price .big .per {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
   .faq-intro .price .sub {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.1em;
     color: var(--bg-soft);
     opacity: 0.85;
-    margin-top: 7px;
+    margin-top: 8px;
   }
 
   /* 速答表 */
@@ -730,8 +735,8 @@
     <div class="faq-intro">
       <div class="lead">企業進出口數據看板 — 辦事處推廣與客服速查手冊。<br><em>同仁不必是數據專家，只需當「專業引路人」。</em></div>
       <div class="price">
-        <div class="big">$999</div>
-        <div class="sub">／ 年 · 一天不到 3 元</div>
+        <div class="big">$999<span class="per">/年</span></div>
+        <div class="sub">一天不到 3 元</div>
       </div>
     </div>
 
@@ -854,12 +859,12 @@
         <div class="faq-a"><div class="faq-a-inner">
           <p>本服務限時限量，限量 <strong>300 家企業</strong>，額滿為止。報名流程：</p>
           <ul>
-            <li>前往報名頁面</li>
+            <li>前往註冊頁面完成註冊</li>
             <li>完成註冊並繳費</li>
             <li>專人聯繫，確認 HS Code 與產品資訊</li>
             <li>完成確認後，建置企業專屬看板</li>
           </ul>
-          <a class="faq-btn warm" href="https://events.taiwantrade.com/115dashboard/Enrollment/Login" target="_blank" rel="noopener">前往報名頁面</a>
+          <a class="faq-btn warm" href="https://events.taiwantrade.com/115dashboard/Enrollment/Login" target="_blank" rel="noopener">前往註冊頁面</a>
         </div></div>
       </div>
 
@@ -939,7 +944,7 @@
 
     </div>
 
-    <div class="faq-foot">內容僅供辦事處內部推廣參考</div>
+    <div class="faq-foot">資料來源：財政部關務署進出口報關統計 · 內容僅供辦事處內部推廣參考</div>
 
   </div>
 
@@ -1110,6 +1115,7 @@
     const paidCount = allRows.filter(r => r.status === '已繳費').length;
     footer.innerHTML = `
       <span>共 ${total} 筆 · 已繳費 ${paidCount} · 待繳費 ${total - paidCount}</span>
+      <span>SOURCE: GOOGLE SHEETS · AUTO-SYNC</span>
     `;
     content.appendChild(footer);
   }
